@@ -132,7 +132,7 @@ const FormularioTransaccion = ({ editar, crear, title }) => {
               />
             </Form.Group>
             <Form.Group className="col-md-6 col-xl-8 mb-3">
-              <Form.Label className="fw-medium">Categoría</Form.Label>
+              <Form.Label className="fw-medium">Categoría:</Form.Label>
               <Form.Control
                 className="sizeText"
                 type="text"
@@ -146,7 +146,7 @@ const FormularioTransaccion = ({ editar, crear, title }) => {
               />
             </Form.Group>
             <Form.Group className="col-md-6  mb-3">
-              <Form.Label className="fw-medium">Tipo de transacción</Form.Label>
+              <Form.Label className="fw-medium">Tipo de transacción:</Form.Label>
               <Form.Select
                 className="sizeText"
                 name="tipoTransaccion"
@@ -160,7 +160,7 @@ const FormularioTransaccion = ({ editar, crear, title }) => {
               </Form.Select>
             </Form.Group>
             <Form.Group className="col-md-6  mb-5">
-              <Form.Label className="fw-medium">Fecha</Form.Label>
+              <Form.Label className="fw-medium">Fecha:</Form.Label>
               <Form.Control
                 className="sizeText"
                 type="date"
