@@ -30,7 +30,7 @@ const Transacciones = () => {
             </tr>
           </thead>
           <tbody>
-            {listaTransacciones.map((transaccion) => (
+            {listaTransacciones.slice().reverse().map((transaccion) => (
               <ItemTransaccion
                 key={transaccion.id}
                 transaccion={transaccion}

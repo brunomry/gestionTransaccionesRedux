@@ -26,7 +26,7 @@ const transaccionesSlice = createSlice({
       return transaccionesFiltradas;
     },
     editarTransaccion: (state, action) => {
-      const { id, descripcion, monto, categoria, tipo, fecha } = action.payload;
+      const { id, descripcion, monto, categoria, tipoTransaccion, fecha } = action.payload;
       const transaccionFiltrada = state.find(
         (transaccion) => transaccion.id === id
       );
@@ -34,7 +34,7 @@ const transaccionesSlice = createSlice({
         transaccionFiltrada.descripcion = descripcion;
         transaccionFiltrada.monto = monto;
         transaccionFiltrada.categoria = categoria;
-        transaccionFiltrada.tipo = tipo;
+        transaccionFiltrada.tipoTransaccion = tipoTransaccion;
         transaccionFiltrada.fecha = fecha;
       }
 

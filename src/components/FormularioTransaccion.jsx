@@ -8,15 +8,33 @@ import {
 } from "../slices/transaccionesSlice";
 import Swal from "sweetalert2";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import { useForm } from "react-hook-form";
 
 const FormularioTransaccion = ({ editar, crear, title }) => {
-  const [transaccion, setTransaccion] = useState({
-    descripcion: "",
-    monto: "",
-    categoria: "",
-    tipoTransaccion: "",
-    fecha: "",
-  });
+  // const [transaccion, setTransaccion] = useState({
+  //   descripcion: "",
+  //   monto: "",
+  //   categoria: "",
+  //   tipoTransaccion: "",
+  //   fecha: "",
+  // });
+
+  // const handleChange = (e) => {
+  //   const { name, value } = e.target;
+  //   setTransaccion({
+  //     ...transaccion,
+  //     [name]: value,
+  //   });
+  // };
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+    setValue,
+    getValues,
+  } = useForm();
 
   const { id } = useParams();
   const navigate = useNavigate();
@@ -24,41 +42,36 @@ const FormularioTransaccion = ({ editar, crear, title }) => {
 
   useEffect(() => {
     if (editar) {
-      const transaccionBuscada = listaTransacciones.find(
-        (t) => t.id === parseInt(id)
-      );
-      if (transaccionBuscada) {
-        setTransaccion(transaccionBuscada);
-      }
+      cargarTransaccion();
     }
-  }, [editar]);
+  }, []);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setTransaccion({
-      ...transaccion,
-      [name]: value,
-    });
+  const cargarTransaccion = () => {
+    const transaccionBuscada = listaTransacciones.find(
+      (t) => t.id === parseInt(id)
+    );
+    if (transaccionBuscada) {
+      // setTransaccion(transaccionBuscada);
+      setValue("descripcion", transaccionBuscada.descripcion);
+      setValue("monto", transaccionBuscada.monto);
+      setValue("categoria", transaccionBuscada.categoria);
+      setValue("tipoTransaccion", transaccionBuscada.tipoTransaccion);
+      setValue("fecha", transaccionBuscada.fecha);
+    }
   };
 
   const dispatch = useDispatch();
 
-  const handleTransaccion = (e) => {
-    e.preventDefault();
-
+  const handleTransaccion = () => {
+    const transaccion = getValues();
+    console.log(transaccion);
     const nuevaTransaccion = {
       id: Math.floor(Math.random() * 1000),
-      descripcion: transaccion.descripcion,
-      monto: transaccion.monto,
-      categoria: transaccion.categoria,
-      tipoTransaccion: transaccion.tipoTransaccion,
-      fecha: transaccion.fecha,
+      ...transaccion,
     };
 
     if (crear) {
       dispatch(agregarTransaccion(nuevaTransaccion));
-
-      console.log("transaccion agregada");
 
       Swal.fire({
         position: "top-center",
@@ -80,13 +93,7 @@ const FormularioTransaccion = ({ editar, crear, title }) => {
       navigate("/transacciones");
       editar = false;
     }
-    setTransaccion({
-      descripcion: "",
-      monto: "",
-      categoria: "",
-      tipoTransaccion: "",
-      fecha: "",
-    });
+    reset();
   };
 
   return (
@@ -95,7 +102,7 @@ const FormularioTransaccion = ({ editar, crear, title }) => {
         <div className="d-flex justify-content-center">
           <Form
             className="row formTransaction pt-3 pt-lg-5 px-lg-3 bg-white rounded-2 shadow"
-            onSubmit={handleTransaccion}
+            onSubmit={handleSubmit(handleTransaccion)}
           >
             <h1 className="text-center mb-5">{title}</h1>
             <p className={crear ? "size text" : "d-none"}>
@@ -109,12 +116,23 @@ const FormularioTransaccion = ({ editar, crear, title }) => {
                 as="textarea"
                 name="descripcion"
                 placeholder="descripcion"
-                onChange={handleChange}
-                value={transaccion.descripcion}
-                minLength={10}
-                maxLength={200}
-                required
+                {...register("descripcion", {
+                  required: "Campo obligatorio",
+                  minLength: {
+                    value: 10,
+                    message:
+                      "La descripción debe tener como mínimo 10 caracteres",
+                  },
+                  maxLength: {
+                    value: 100000,
+                    message:
+                      "La descripción debe tener como máximo 200 caracteres",
+                  },
+                })}
               />
+              <Form.Text className="text-danger">
+                {errors.descripcion?.message}
+              </Form.Text>
             </Form.Group>
 
             <Form.Group className="col-md-6 col-xl-4 mb-3">
@@ -124,12 +142,21 @@ const FormularioTransaccion = ({ editar, crear, title }) => {
                 type="number"
                 name="monto"
                 placeholder="100000"
-                onChange={handleChange}
-                value={transaccion.monto}
-                min={200}
-                max={100000}
-                required
+                {...register("monto", {
+                  required: "Campo obligatorio",
+                  min: {
+                    value: 500,
+                    message: "El mínimo debe superar los 500",
+                  },
+                  max: {
+                    value: 100000,
+                    message: "El máximo no debe superar los 100000",
+                  },
+                })}
               />
+              <Form.Text className="text-danger">
+                {errors.monto?.message}
+              </Form.Text>
             </Form.Group>
             <Form.Group className="col-md-6 col-xl-8 mb-3">
               <Form.Label className="fw-medium">Categoría:</Form.Label>
@@ -138,12 +165,22 @@ const FormularioTransaccion = ({ editar, crear, title }) => {
                 type="text"
                 placeholder="categoría"
                 name="categoria"
-                onChange={handleChange}
-                value={transaccion.categoria}
-                minLength={2}
-                maxLength={20}
-                required
+                {...register("categoria", {
+                  required: "Campo obligatorio",
+                  min: {
+                    value: 500,
+                    message: "La categoría debe tener como mínimo 2 caracteres",
+                  },
+                  max: {
+                    value: 200,
+                    message:
+                      "La categoría debe tener comó máximo 15 caracteres",
+                  },
+                })}
               />
+              <Form.Text className="text-danger">
+                {errors.categoria?.message}
+              </Form.Text>
             </Form.Group>
             <Form.Group className="col-md-6  mb-3">
               <Form.Label className="fw-medium">
@@ -152,14 +189,17 @@ const FormularioTransaccion = ({ editar, crear, title }) => {
               <Form.Select
                 className="sizeText"
                 name="tipoTransaccion"
-                value={transaccion.tipoTransaccion}
-                onChange={handleChange}
-                required
+                {...register("tipoTransaccion", {
+                  required: "Campo obligatorio",
+                })}
               >
                 <option value="">seleccione</option>
                 <option value="Ingreso">Ingreso</option>
                 <option value="Gasto">Gasto</option>
               </Form.Select>
+              <Form.Text className="text-danger">
+                {errors.tipoTransaccion?.message}
+              </Form.Text>
             </Form.Group>
             <Form.Group className="col-md-6  mb-5">
               <Form.Label className="fw-medium">Fecha:</Form.Label>
@@ -167,10 +207,13 @@ const FormularioTransaccion = ({ editar, crear, title }) => {
                 className="sizeText"
                 type="date"
                 name="fecha"
-                value={transaccion.fecha}
-                onChange={handleChange}
-                required
+                {...register("fecha", {
+                  required: "Campo obligatorio",
+                })}
               />
+              <Form.Text className="text-danger">
+                {errors.fecha?.message}
+              </Form.Text>
             </Form.Group>
             <div className="d-flex justify-content-center gap-3 mb-3">
               <Button type="submit" className="px-5 btn btn-success sizeText">
