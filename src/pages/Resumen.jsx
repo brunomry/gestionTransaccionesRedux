@@ -9,7 +9,7 @@ const Resumen = () => {
   const ingresosTotales = () => {
     let ingresos = 0;
     listaTransacciones.map((t) => {
-      if (t.tipoTransaccion === "ingreso") {
+      if (t.tipoTransaccion === "Ingreso") {
         const monto = parseFloat(t.monto);
         ingresos += monto;
       }
@@ -20,7 +20,7 @@ const Resumen = () => {
   const gastosTotales = () => {
     let gastos = 0;
     listaTransacciones.map((t) => {
-      if (t.tipoTransaccion === "gasto") {
+      if (t.tipoTransaccion === "Gasto") {
         const monto = parseFloat(t.monto);
         gastos += monto;
       }
