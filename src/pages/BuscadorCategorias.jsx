@@ -29,8 +29,9 @@ const BuscadorCategorias = () => {
       <h1 className="text-center mb-5">Buscar por Categoría</h1>
       <Form className="formCategory d-flex justify-content-center sizeText">
         <FormGroup>
-          <Form.Label>Selecciona una categoría</Form.Label>
+          <Form.Label htmlFor="categoria">Selecciona una categoría</Form.Label>
           <Form.Select
+            id="categoria"
             value={categoria}
             onChange={handleCategoria}
             className="selectCategory"

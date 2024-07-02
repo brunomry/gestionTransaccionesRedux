@@ -109,8 +109,9 @@ const FormularioTransaccion = ({ editar, crear, title }) => {
               Ingresa los datos de la transacción a continuación.
             </p>
             <Form.Group className="mb-3">
-              <Form.Label className="fw-medium">Descripción:</Form.Label>
+              <Form.Label className="fw-medium" htmlFor="descripcion">Descripción:</Form.Label>
               <Form.Control
+                id="descripcion"
                 className="inputDescription sizeText"
                 type="text"
                 as="textarea"
@@ -136,8 +137,9 @@ const FormularioTransaccion = ({ editar, crear, title }) => {
             </Form.Group>
 
             <Form.Group className="col-md-6 col-xl-4 mb-3">
-              <Form.Label className="fw-medium">Monto:</Form.Label>
+              <Form.Label className="fw-medium" htmlFor="monto">Monto:</Form.Label>
               <Form.Control
+                id="monto"
                 className="sizeText"
                 type="number"
                 name="monto"
@@ -159,8 +161,9 @@ const FormularioTransaccion = ({ editar, crear, title }) => {
               </Form.Text>
             </Form.Group>
             <Form.Group className="col-md-6 col-xl-8 mb-3">
-              <Form.Label className="fw-medium">Categoría:</Form.Label>
+              <Form.Label className="fw-medium" htmlFor="categoria">Categoría:</Form.Label>
               <Form.Control
+                id="categoria"
                 className="sizeText"
                 type="text"
                 placeholder="categoría"
@@ -183,10 +186,11 @@ const FormularioTransaccion = ({ editar, crear, title }) => {
               </Form.Text>
             </Form.Group>
             <Form.Group className="col-md-6  mb-3">
-              <Form.Label className="fw-medium">
+              <Form.Label className="fw-medium" htmlFor="tipo">
                 Tipo de transacción:
               </Form.Label>
               <Form.Select
+                id="tipo"
                 className="sizeText"
                 name="tipoTransaccion"
                 {...register("tipoTransaccion", {
@@ -202,8 +206,9 @@ const FormularioTransaccion = ({ editar, crear, title }) => {
               </Form.Text>
             </Form.Group>
             <Form.Group className="col-md-6  mb-5">
-              <Form.Label className="fw-medium">Fecha:</Form.Label>
+              <Form.Label className="fw-medium" htmlFor="fecha">Fecha:</Form.Label>
               <Form.Control
+                id="fecha"
                 className="sizeText"
                 type="date"
                 name="fecha"
