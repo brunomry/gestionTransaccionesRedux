@@ -25,7 +25,7 @@ const BuscadorCategorias = () => {
   }, [categoria]);
 
   return (
-    <section className="my-5 container d-flex flex-column align-items-center justify-content-center">
+    <section className="my-5 container d-flex flex-column align-items-center">
       <h1 className="text-center mb-5">Buscar por Categoría</h1>
       <Form className="formCategory d-flex justify-content-center sizeText">
         <FormGroup>

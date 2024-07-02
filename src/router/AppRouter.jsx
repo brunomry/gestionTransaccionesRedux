@@ -7,6 +7,7 @@ import FormularioTransaccion from "../components/FormularioTransaccion";
 import BuscadorCategorias from "../pages/BuscadorCategorias";
 import Home from "../pages/Home";
 import Resumen from "../pages/Resumen";
+import Footer from "../components/common/Footer";
 
 const AppRouter = () => {
   return (
@@ -44,6 +45,7 @@ const AppRouter = () => {
         <Route path="/resumen" element={<Resumen></Resumen>}></Route>
         <Route path="/categorias" element={<Categorias></Categorias>}></Route>
       </Routes>
+      <Footer></Footer>
     </BrowserRouter>
   );
 };
