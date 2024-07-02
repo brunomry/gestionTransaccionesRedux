@@ -90,8 +90,8 @@ const FormularioTransaccion = ({ editar, crear, title }) => {
   };
 
   return (
-    <section className="container-fluid d-flex px-0">
-      <article className="containerLeft my-5 px-2 px-sm-5">
+    <section className="container-fluid d-flex justify-content-center px-0">
+      <article className="containerLeft mx-auto my-5 px-2 px-sm-5">
         <div className="d-flex justify-content-center">
           <Form
             className="row formTransaction pt-3 pt-lg-5 px-lg-3 bg-white rounded-2 shadow"
