@@ -5,11 +5,10 @@ const Resumen = () => {
   const listaTransacciones = useSelector((state) => state.transacciones);
   const [ingresos, setIngresos] = useState(0);
   const [gastos, setGastos] = useState(0);
-  const [total, setTotal] = useState(0);
 
   const ingresosTotales = () => {
     let ingresos = 0;
-    const lista = listaTransacciones.map((t) => {
+    listaTransacciones.map((t) => {
       if (t.tipoTransaccion === "ingreso") {
         const monto = parseFloat(t.monto);
         ingresos += monto;

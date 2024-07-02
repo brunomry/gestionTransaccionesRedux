@@ -19,7 +19,6 @@ const AppRouter = () => {
           element={<Transacciones></Transacciones>}
         ></Route>
         <Route
-          
           path="/crear"
           element={
             <FormularioTransaccion
@@ -42,10 +41,7 @@ const AppRouter = () => {
           path="/categorias"
           element={<BuscadorCategorias></BuscadorCategorias>}
         ></Route>
-        <Route
-          path="/resumen"
-          element={<Resumen></Resumen>}
-        ></Route>
+        <Route path="/resumen" element={<Resumen></Resumen>}></Route>
         <Route path="/categorias" element={<Categorias></Categorias>}></Route>
       </Routes>
     </BrowserRouter>

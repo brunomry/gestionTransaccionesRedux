@@ -146,7 +146,9 @@ const FormularioTransaccion = ({ editar, crear, title }) => {
               />
             </Form.Group>
             <Form.Group className="col-md-6  mb-3">
-              <Form.Label className="fw-medium">Tipo de transacción:</Form.Label>
+              <Form.Label className="fw-medium">
+                Tipo de transacción:
+              </Form.Label>
               <Form.Select
                 className="sizeText"
                 name="tipoTransaccion"

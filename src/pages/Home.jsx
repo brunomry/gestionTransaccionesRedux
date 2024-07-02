@@ -1,5 +1,4 @@
 import React from "react";
-import { Form, Button } from "react-bootstrap";
 import img from "../assets/imgHome.jpg";
 import { Link } from "react-router-dom";
 

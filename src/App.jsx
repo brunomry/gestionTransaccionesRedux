@@ -3,7 +3,6 @@ import AppRouter from "./router/AppRouter";
 import "./App.css";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
-import Menu from "./components/common/Menu";
 
 function App() {
   return (

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Offcanvas, Container, Form, Nav, Navbar } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 
