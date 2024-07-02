@@ -56,7 +56,7 @@ const Resumen = () => {
           </p>
         </article>
       ) : (
-        <section className="d-flex flex-column justify-content-center mt-5">
+        <section className="d-flex flex-column align-items-center mt-5">
           <h1 className="mb-5">Resumen Actual</h1>
           <p className="sizeText">Aún no tienes transacciones registradas</p>
         </section>
